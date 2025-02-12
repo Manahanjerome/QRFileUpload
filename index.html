@@ -1,32 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR File Upload</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Paprint</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #a30000;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+    .container {
+      background-color: #fff;
+      border-radius: 10px;
+      width: 400px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      background-color: #a30000;
+      padding: 10px;
+      border-radius: 10px 10px 0 0;
+    }
+    .header img {
+      width: 50px;
+      vertical-align: middle;
+    }
+    .header h1 {
+      display: inline;
+      font-size: 24px;
+      margin: 0;
+      color: #ffd700;
+    }
+    .upload-section {
+      margin: 20px 0;
+    }
+    .upload-section p {
+      font-size: 18px;
+      color: #000;
+    }
+    .upload-icon {
+      font-size: 80px;
+      color: #333;
+    }
+    .upload-icon img{
+    width: 300px;
+      vertical-align: middle;
+    }
+    .file-input {
+      margin: 10px 0;
+    }
+    .file-input input {
+      display: none;
+    }
+    .file-input label {
+      background-color: #77dd77;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .upload-btn {
+      background-color: #6699ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .upload-btn:hover {
+      background-color: #4d88ff;
+    }
+  </style>
 </head>
 <body>
-    <h1>Upload Your File</h1>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" name="file" id="fileInput" required><br><br>
-        <button type="submit">Upload</button>
-    </form>
-    <p id="status"></p>
-
-    <script>
-        document.getElementById('uploadForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const formData = new FormData();
-            formData.append('file', document.getElementById('fileInput').files[0]);
-
-            const response = await fetch('/upload', {
-                method: 'POST',
-                body: formData
-            });
-
-            const result = await response.text();
-            document.getElementById('status').innerText = result;
-        });
-    </script>
+  <div class="container">
+    <div class="header">
+      <img src="Logo1.png" alt="Logo 1">
+      <h1>E-Paprint</h1>
+      <img src="Logo2.png" alt="Logo 2">
+    </div>
+    <div class="upload-section">
+      <div class="upload-icon"><img src="File Upload.png" alt="File Upload"></div>
+      <p>Drag and drop files here</p>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <div class="file-input">
+          <label for="file">Choose a File</label>
+          <input type="file" id="file" name="file" required>
+        </div>
+        <button type="submit" class="upload-btn">Upload</button>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
+
